@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--开启日志输出-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <!--配置类别名，配置后在Mapper配置文件（通常我们将编写SQL语句的配置文件成为Mapper配置文件）中需要使用pojo包中的类时，使用简单类名即可-->
+    <typeAliases>
+        <package name="cn.bigcoder.pojo"/>
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="cn.tjd.interceptors.ThresholdInterceptor">
+            <property name="threshold" value="10"/>
+        </plugin>
+        <plugin interceptor="cn.tjd.interceptors.ThresholdInterceptor2">
+            <property name="threshold" value="10"/>
+        </plugin>
+    </plugins>
+</configuration>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+    <!--配置包扫描器，配置后会自动扫描指定包下面，由注解注册的Bean-->
+    <context:component-scan base-package="cn.bigcoder"></context:component-scan>
+
+    <!-- 数据库连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close">
+        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    </bean>
+    <!-- 让spring管理sqlsessionfactory 使用mybatis和spring整合包中的 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 数据库连接池 -->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="cn.bigcoder.pojo"/>
+        <property name="plugins" ref="thresholdInterceptor"/>
+        <!-- 加载mybatis的全局配置文件 -->
+        <!--        <property name="configLocation" value="classpath:integration-config/SqlSessionConfig.xml" />-->
+    </bean>
+
+    <!--Mybatis插件-->
+    <bean id="thresholdInterceptor" class="cn.bigcoder.interceptors.ThresholdInterceptor">
+        <property name="threshold" value="10"/>
+    </bean>
+
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.bigcoder.mapper"></property>
+    </bean>
+
+    <!--定义事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 使用注解定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--    &lt;!&ndash;BeanDefinitionRegistryPostProcessor，它从一个基本包开始递归地搜索接口，并将它们注册为MapperFactoryBean。&ndash;&gt;-->
+    <!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+    <!--        <property name="basePackage" value="cn.tjd.mapper" />-->
+    <!--    </bean>-->
+</beans>

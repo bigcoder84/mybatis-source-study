@@ -1,0 +1,1 @@
+这个目录下放置MyBatis和Spring整合的配置文件，用于MyBatis和Spring联合测试时使用

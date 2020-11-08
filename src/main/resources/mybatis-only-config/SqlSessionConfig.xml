@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--开启日志输出-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!--关闭以及缓存-->
+        <setting name="localCacheScope" value="STATEMENT"/>
+    </settings>
+    <!--配置类别名，配置后在Mapper配置文件（通常我们将编写SQL语句的配置文件成为Mapper配置文件）中需要使用pojo包中的类时，使用简单类名即可-->
+    <typeAliases>
+        <package name="cn.bigcoder.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        <package name="cn.tjd.mapper"/>-->
+        <mapper resource="cn/tjd/mapper/TestMapper.xml"></mapper>
+<!--        <mapper class="cn.tjd.mapper.TestMapper"></mapper>-->
+    </mappers>
+
+</configuration>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bigcoder.mapper.TestMapper">
+
+    <resultMap id="base_type" type="Student">
+        <result property="name" column="name"></result>
+        <!--        <result property="password" column="t_password"></result>-->
+        <!--        <result property="sex" column="sex"></result>-->
+    </resultMap>
+
+    <resultMap id="base_type2" type="Student">
+        <result property="name" column="name"></result>
+        <result property="password" column="t_password"></result>
+        <result property="sex" column="sex"></result>
+    </resultMap>
+
+
+    <select id="getStudentByIdToResultType"  resultType="Student">
+        select t_password password,t_name name,sex,description from student where id = #{id}
+    </select>
+
+    <select id="getStudentByIdToResultMap" resultMap="base_type" flushCache="true">
+        select t_password password,t_name name,sex,description from student where id = #{id}
+    </select>
+    <select id="getStudentByNameAndPassWord" resultType="cn.bigcoder.pojo.Student">
+        select t_password password,t_name name,sex,description from student where t_name=#{name} and t_password=#{password}
+    </select>
+    <select id="getStudentByEntity" resultType="cn.bigcoder.pojo.Student">
+        select t_password password,t_name name,sex,description from student where t_name=#{name} and
+        t_password=#{password}
+    </select>
+</mapper>
