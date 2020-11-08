@@ -1,6 +1,6 @@
 package cn.bigcoder.service;
 
-import cn.bigcoder.mapper.TestMapper;
+import cn.bigcoder.mapper.StudentMapper;
 import cn.bigcoder.pojo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
  * @DESCRIPTION:
  **/
 @Service
-public class TestService {
+public class StudentService {
     @Autowired
-    private TestMapper testMapper;
+    private StudentMapper studentMapper;
 
     public Student getStudentByIdToResultMap(String id){
-        return testMapper.getStudentByIdToResultMap(id);
+        return studentMapper.getStudentByIdToResultMap(id);
     }
 }

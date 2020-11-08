@@ -13,10 +13,10 @@
     </typeAliases>
 
     <plugins>
-        <plugin interceptor="cn.tjd.interceptors.ThresholdInterceptor">
+        <plugin interceptor="cn.bigcoder.interceptors.ThresholdInterceptor">
             <property name="threshold" value="10"/>
         </plugin>
-        <plugin interceptor="cn.tjd.interceptors.ThresholdInterceptor2">
+        <plugin interceptor="cn.bigcoder.interceptors.ThresholdInterceptor2">
             <property name="threshold" value="10"/>
         </plugin>
     </plugins>

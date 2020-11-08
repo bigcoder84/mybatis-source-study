@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
  * @Date: 2020-03-30
  * @DESCRIPTION:
  **/
-public interface TestMapper {
+public interface StudentMapper {
     Student getStudentByIdToResultType(@Param("id") String id);
 
     Student getStudentByIdToResultMap(@Param("id") String id);

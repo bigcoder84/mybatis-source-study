@@ -1,8 +1,8 @@
 package integration;
 
-import cn.bigcoder.mapper.TestMapper;
+import cn.bigcoder.mapper.StudentMapper;
 import cn.bigcoder.pojo.Student;
-import cn.bigcoder.service.TestService;
+import cn.bigcoder.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +19,16 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(locations = "classpath:integration-config/applicationContext.xml")
 public class SpringTest {
     @Autowired
-    private TestMapper testMapper;
+    private StudentMapper studentMapper;
 
     @Autowired
-    private TestService testService;
+    private StudentService studentService;
 
     @Test
-    @Transactional
     public void test(){
-        Student student = testService.getStudentByIdToResultMap("00000b373502481baa1a5f5229507cf8");
+        Student student = studentService.getStudentByIdToResultMap("00000b373502481baa1a5f5229507cf8");
         System.out.println(student);
-        Student student2 = testService.getStudentByIdToResultMap("00000b373502481baa1a5f5229507cf8");
+        Student student2 = studentService.getStudentByIdToResultMap("00000b373502481baa1a5f5229507cf8");
         System.out.println(student2);
     }
 }

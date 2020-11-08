@@ -1,6 +1,6 @@
 package mybatis.base;
 
-import cn.bigcoder.mapper.TestMapper;
+import cn.bigcoder.mapper.StudentMapper;
 import cn.bigcoder.pojo.Student;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -23,7 +23,7 @@ public class MyBatisTest {
         InputStream input = Resources.getResourceAsStream("mybatis-only-config/SqlSessionConfig.xml");
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(input);
         SqlSession sqlSession = sessionFactory.openSession();
-        TestMapper mapper = sqlSession.getMapper(TestMapper.class);
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         Student student = mapper.getStudentByIdToResultType("00000b373502481baa1a5f5229507cf8");
         Student student2 = mapper.getStudentByIdToResultType("00000b373502481baa1a5f5229507cf8");
         //TestMapper mapper2 = sqlSession.getMapper(TestMapper.class);
@@ -40,7 +40,7 @@ public class MyBatisTest {
         InputStream input = Resources.getResourceAsStream("mybatis-only-config/SqlSessionConfig.xml");
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(input);
         SqlSession sqlSession = sessionFactory.openSession();
-        TestMapper mapper = sqlSession.getMapper(TestMapper.class);
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         Student student = mapper.getStudentByNameAndPassWord("83196", "123456");
         System.out.println(student);
     }
@@ -56,7 +56,7 @@ public class MyBatisTest {
         Student student = new Student();
         student.setName("83196");
         student.setPassword("123456");
-        TestMapper mapper = sqlSession.getMapper(TestMapper.class);
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         mapper.getStudentByEntity(student);
     }
 
@@ -80,7 +80,7 @@ public class MyBatisTest {
         InputStream input = Resources.getResourceAsStream("mybatis-only-config/SqlSessionConfig.xml");
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(input);
         SqlSession sqlSession = sessionFactory.openSession();
-        TestMapper mapper = sqlSession.getMapper(TestMapper.class);
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         Student student = mapper.getStudentByIdToResultMap("00000b373502481baa1a5f5229507cf8");
         System.out.println(student);
     }
@@ -106,9 +106,9 @@ public class MyBatisTest {
         InputStream input = Resources.getResourceAsStream("mybatis-only-config/SqlSessionConfig.xml");
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(input);
         SqlSession sqlSession = sessionFactory.openSession();
-        TestMapper testMapper = sqlSession.getMapper(TestMapper.class);
-        System.out.println(testMapper.getStudentByIdToResultMap("dsa"));
-        TestMapper testMapper2 = sqlSession.getMapper(TestMapper.class);
-        System.out.println(testMapper2.getStudentByIdToResultMap("dsa"));
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        System.out.println(studentMapper.getStudentByIdToResultMap("dsa"));
+        StudentMapper studentMapper2 = sqlSession.getMapper(StudentMapper.class);
+        System.out.println(studentMapper2.getStudentByIdToResultMap("dsa"));
     }
 }
